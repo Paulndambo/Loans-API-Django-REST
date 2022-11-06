@@ -62,7 +62,6 @@ class LoanPaymentSerializer(serializers.ModelSerializer):
         amount = validated_data.get('amount')
         loan = validated_data.get('loan')
         loan.amount_repaid += amount
-        
-
-        
+        loan.balance -= amount
+        loan.save()
         return LoanPayment.objects.create(**validated_data)
