@@ -4,6 +4,7 @@ from .serializers import LoanApplicationSerializer, LoanPaymentSerializer, LoanS
 from rest_framework.viewsets import ModelViewSet
 # Create your views here.
 class LoanModelViewSet(ModelViewSet):
+    http_method_names = ['get', 'put', 'patch', 'delete']
     queryset = Loan.objects.all()
     serializer_class = LoanSerializer
 

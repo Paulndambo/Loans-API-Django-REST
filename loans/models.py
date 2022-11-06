@@ -5,6 +5,7 @@ from core.models import LoanType
 LOAN_APPLICATION_STATUS_CHOICES = (
     ("approved", "Approved"),
     ("declined", "Declined"),
+    ("review", "Review"),
 )
 
 LOAN_STATUS_CHOICES = (
@@ -17,9 +18,9 @@ LOAN_STATUS_CHOICES = (
 
 class LoanApplication(models.Model):
     borrower = models.ForeignKey(Borrower, on_delete=models.CASCADE, related_name="loan_applications")
-    loan_type = models.ForeignKey(LoanType, on_delete=models.SET_NULL, null=True)
+    loan_type = models.ForeignKey(LoanType, on_delete=models.PROTECT)
     amount_applying = models.DecimalField(max_digits=10, decimal_places=2)
-    status = models.CharField(max_length=255, choices=LOAN_APPLICATION_STATUS_CHOICES)
+    status = models.CharField(max_length=255, choices=LOAN_APPLICATION_STATUS_CHOICES, default='review')
     decline_reason = models.TextField(null=True, blank=True)
     date_applied = models.DateTimeField(auto_now_add=True)
     date_updated = models.DateTimeField(auto_now=True)

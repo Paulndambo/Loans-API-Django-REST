@@ -2,9 +2,9 @@ from django.urls import path, include
 from .import views
 from rest_framework.routers import DefaultRouter
 router = DefaultRouter()
+router.register("loans-awarded", views.LoanModelViewSet, basename="loans-awarded")
 router.register("loan-applications", views.LoanApplicationModelViewSet, basename="loan-applications")
-router.register("", views.LoanModelViewSet, basename="loans")
-router.register("loan-payments", views.LoanPaymentModelViewSet, basename="loan-payments")
+router.register("payments", views.LoanPaymentModelViewSet, basename="payments")
 
 urlpatterns = [
     path("", include(router.urls)),
