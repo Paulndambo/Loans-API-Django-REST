@@ -65,3 +65,6 @@ class LoanPaymentSerializer(serializers.ModelSerializer):
         loan.balance -= amount
         loan.save()
         return LoanPayment.objects.create(**validated_data)
+
+class BankStatementSerializer(serializers.Serializer):
+    file = serializers.FileField()

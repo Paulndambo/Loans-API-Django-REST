@@ -8,4 +8,6 @@ router.register("payments", views.LoanPaymentModelViewSet, basename="payments")
 
 urlpatterns = [
     path("", include(router.urls)),
+    path("bank-statement-upload/", views.BankStatementUploadAPIView.as_view(),
+         name="bank-statement-upload"),
 ]
